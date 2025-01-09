@@ -29,28 +29,28 @@ let quoteList = [
   },
 ];
 
+// HTTP Request types include
+// GET - Read data
+// POST - Create data
+
 // We will create an endpoint to get these quotes back
-// Routes
-// Query endpoint
+// Endpoints are also called routes
+// Sometimes we say we "query" the endpoint, or "hit" it to get data
 
 // The first argument to app.get is the name of the route
-
-//Anonymous function
-app.get("/quotes", (request, res) => {
+// The second is an anonymous function
+// Arrow function syntax is () => {}, params can go inside ()
+app.get("/quotes", (req, res) => {
   console.log(
     "Get request to /quotes successful"
   );
 
-  // When you want data sent back from your server, use response.send
-  // Res.send takes a payload - the thing you want to send back
+  // When you want data sent back from your server, use res.send
+  // res.send takes a payload - the thing you want to send back
   res.send(quoteList);
+  // Could also choose to send back an HTTP status - 200 is default
   // res.sendStatus(404);
 });
 
-// () => {}
-
-// This is an API - Application Programming Interface
-
-// HTTP Requests
-// GET - read
-// POST
+// You've just built an API - Application Programming Interface.
+// It is a way for two pieces of software to interact with each other
