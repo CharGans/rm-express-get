@@ -37,12 +37,14 @@ let quoteList = [
 
 //Anonymous function
 app.get("/quotes", (request, res) => {
-  console.log("Get request to /quotes successful");
+  console.log(
+    "Get request to /quotes successful"
+  );
 
   // When you want data sent back from your server, use response.send
   // Res.send takes a payload - the thing you want to send back
-  // res.send(quoteList)
-  res.sendStatus(404);
+  res.send(quoteList);
+  // res.sendStatus(404);
 });
 
 // () => {}
