@@ -8,6 +8,11 @@ const port = 5001;
 // express static file serving - public is the folder name
 app.use(express.static("server/public"));
 
+// If we are POSTing data, we need to include this boilerplate
+// JavaScript Object Notation
+// Serialization, deserialization
+app.use(express.json());
+
 // Start up our server
 app.listen(port, () => {
   console.log("listening on port", port);
@@ -42,7 +47,7 @@ let quoteList = [
 // Arrow function syntax is () => {}, params can go inside ()
 app.get("/quotes", (req, res) => {
   console.log(
-    "Get request to /quotes successful"
+    "GET request to /quotes successful"
   );
 
   // When you want data sent back from your server, use res.send
@@ -51,6 +56,12 @@ app.get("/quotes", (req, res) => {
   // Could also choose to send back an HTTP status - 200 is default
   // res.sendStatus(404);
 });
+
+app.post("/quotes", (req, res) => { 
+  console.log("POST to /quotes success!")
+
+  res.sendStatus(201);
+})
 
 // You've just built an API - Application Programming Interface.
 // It is a way for two pieces of software to interact with each other
