@@ -12,7 +12,21 @@
     <script defer src="client.js"></script>
   </head>
   <body>
-    <h1>GET REQUESTS</h1>
+    <h1>HTTP REQUESTS</h1>
+    <form onSubmit="addQuote(event)">
+      <input
+        type="text"
+        id="quoteContent"
+        placeholder="enter quote here"
+      />
+      <br />
+      <input
+        type="text"
+        id="authorContent"
+        placeholder="enter author here"
+      />
+      <button type="submit">Submit</button>
+    </form>
     <!-- A div to hold our actual quote content -->
     <div id="content"></div>
   </body>

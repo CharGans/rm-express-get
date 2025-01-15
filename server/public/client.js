@@ -31,6 +31,37 @@ function getQuotes() {
 // Call the function to get the quotes
 getQuotes();
 
+function addQuote(event) {
+  event.preventDefault();
+
+  // We access an input field's input via its value property
+  let quote = document.querySelector("#quoteContent").value;
+  let author = document.querySelector("#authorContent").value;
+  console.log("Inputs:", quote, author);
+
+  // Bundle up inputs into an object
+  let quoteToAdd = {
+    text: quote,
+    author: author,
+  };
+
+  axios
+    .post("/quotes", quoteToAdd)
+    .then((response) => {
+      console.log("Successful POST to /quotes");
+
+      //Clear out the input fields
+      document.querySelector("#quoteContent").value = "";
+      document.querySelector("#authorContent").value = "";
+
+      // Get the quotes from the server again!
+      getQuotes();
+    })
+    .catch((error) => {
+      console.log("Error in POST to /quotes", error);
+    });
+}
+
 // Function to actually display quotes on DOM
 function renderToDOM(quotes) {
   console.log("In renderToDOM");

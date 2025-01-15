@@ -9,8 +9,8 @@ const port = 5001;
 app.use(express.static("server/public"));
 
 // If we are POSTing data, we need to include this boilerplate
-// JavaScript Object Notation
-// Serialization, deserialization
+// JSON = JavaScript Object Notation
+// Can look up Serialization, Deserialization for a deeper dive, not necessary
 app.use(express.json());
 
 // Start up our server
@@ -57,11 +57,17 @@ app.get("/quotes", (req, res) => {
   // res.sendStatus(404);
 });
 
-app.post("/quotes", (req, res) => { 
-  console.log("POST to /quotes success!")
-
+app.post("/quotes", (req, res) => {
+  console.log("POST to /quotes success! Body: ", req.body);
+  // req.body is the data sent in the request lives
+  let quote = req.body;
+  // We have a quoteList that lives on the backend
+  // Take the req.body and save it in the array
+  console.log("Adding new quote:", quote);
+  quoteList.push(quote);
+  console.log("New array is:", quoteList);
   res.sendStatus(201);
-})
+});
 
 // You've just built an API - Application Programming Interface.
 // It is a way for two pieces of software to interact with each other
