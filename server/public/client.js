@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 console.log("hello world");
 
 // We can make a request to the backend using a function
@@ -46,7 +48,7 @@ function addQuote(event) {
   };
 
   axios
-    .post("/quotes", quoteToAdd)
+    .post('/quotes', quoteToAdd)
     .then((response) => {
       console.log("Successful POST to /quotes");
 
@@ -62,6 +64,18 @@ function addQuote(event) {
     });
 }
 
+function deleteQuote(index) {
+  console.log('delete quote successful')
+  console.log('the selected quote has the index of', index);
+
+  axios.delete(`/quotes/${index}`)
+    .then(response => {
+      document.querySelector("#quoteContent").value = "";
+      document.querySelector("#authorContent").value = "";
+      getQuotes();
+    })
+};
+
 // Function to actually display quotes on DOM
 function renderToDOM(quotes) {
   console.log("In renderToDOM");
@@ -71,10 +85,17 @@ function renderToDOM(quotes) {
   // Make sure the content is empty initially
   contentDiv.innerHTML = "";
   // Loop through each quote in the quotes array
-  for (let quote of quotes) {
-    // Add each quote to the innerHTML using raw HTML, adding on top of the previous ones
+  quotes.forEach((quote, index) => { 
+
     contentDiv.innerHTML += `
         <p>"${quote.text}" -${quote.author}</p>
+        <button onlick="deleteQuote(${index})">Delete</button>
         `;
-  }
+
+  })
 }
+  //for (let quote of quotes) {
+    // Add each quote to the innerHTML using raw HTML, adding on top of the previous ones
+    
+  //}
+  
