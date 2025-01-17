@@ -43,6 +43,9 @@ let quoteList = require('../modules/quotes');
     res.sendStatus(201);
   });
   
+  router.delete ("/",  (req, res) => {
+    console.log('DELETE request successfull');
+  });
   // You've just built an API - Application Programming Interface.
   // It is a way for two pieces of software to interact with each other
 
